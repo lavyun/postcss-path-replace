@@ -1,0 +1,22 @@
+{
+  "name": "postcss-path-replace",
+  "version": "1.0.2",
+  "description": "A postcss plugin, can replace resource path in css.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "postcss",
+    "resource",
+    "path"
+  ],
+  "author": "http://github.com/lavyun",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.1.1"
+  },
+  "dependencies": {
+    "postcss": "^6.0.21"
+  }
+}
