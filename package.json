@@ -1,7 +1,8 @@
 {
   "name": "postcss-path-replace",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A postcss plugin, can replace resource path in css.",
+  "repository": "https://github.com/lavyun/postcss-path-replace",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

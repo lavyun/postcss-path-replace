@@ -1,5 +1,14 @@
 ### postcss-path-replace
 
+<p>
+
+<a href="https://www.npmjs.com/package/postcss-path-replace"><img src="https://img.shields.io/npm/dm/postcss-path-replace.svg?style=flat" alt="npm"></a>`
+<a href="https://www.npmjs.com/package/postcss-path-replace"><img src="https://img.shields.io/npm/l/postcss-path-replace.svg" alt="npm"></a>
+</p>
+
+
+
+
 #### usage
 
 this plugin can replace the css resource's url. for example:
@@ -50,6 +59,7 @@ options:
 ```js
 {
   "postcss-path-replace" : {
+    publicPath: '/static/module',
     mode: 'replace',
     matched: /\/static\/module-\d/g
   }
