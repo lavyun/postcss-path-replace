@@ -1,19 +1,16 @@
-### postcss-path-replace
+# postcss-path-replace
 
-<p>
-
-<a href="https://www.npmjs.com/package/postcss-path-replace"><img src="https://img.shields.io/npm/dm/postcss-path-replace.svg?style=flat" alt="npm"></a>
-<a href="https://www.npmjs.com/package/postcss-path-replace"><img src="https://img.shields.io/npm/l/postcss-path-replace.svg" alt="npm"></a>
-</p>
-
-
+![Travis (.org)](https://img.shields.io/travis/lavyun/postcss-path-replace)
+[![Coverage Status](https://coveralls.io/repos/github/lavyun/postcss-path-replace/badge.svg?branch=master)](https://coveralls.io/github/lavyun/postcss-path-replace?branch=master)
+![npm](https://img.shields.io/npm/dm/postcss-path-replace)
+![node](https://img.shields.io/node/v/postcss-path-replace)
+![NPM](https://img.shields.io/npm/l/postcss-path-replace)
 
 
-#### usage
+## usage
 
-this plugin can replace the css resource's url. for example:
+This plugin can replace the resource's url in your css:
 
-use this option
 ```js
 {
   "postcss-path-replace" : {
@@ -24,38 +21,40 @@ use this option
 }
 ```
 
-before css:
+before:
+
 ```css
 div {
   background: url(/static/img/header.png)
 }
 ```
 
-after css:
+after:
+
 ```css
 div {
   background: url(http://static.example.com/static/img/header.png)
 }
 ```
 
-If the mode option is `replace`, the output css will be:
+If mode was `replace`, the output css will be:
+
 ```css
 div {
   background: url(http://static.example.com/img/header.png)
 }
 ```
 
-#### OPTIONS
+## OPTIONS
 
-##### publicPath `string`
+### publicPath `string`
 
 The plugin will use `publicPath` to replace the matched path, default is `''`
 
-##### matched `string | RegExp`
+### matched `string | RegExp`
 
 The matched path, it can be a RegExp:
 
-options:
 ```js
 {
   "postcss-path-replace" : {
@@ -66,19 +65,19 @@ options:
 }
 ```
 
-before css:
+before:
 ```css
 div { background: url("/static/module-1/header.png") }
 ```
 
-after css:
+after:
 ```css
 div { background: url("/static/module/header.png") }
 ```
 
-##### exec `function`
+### exec `function`
 
-The custom excute function, it's the second argument of `String.prototype.replace`
+The custom execute function, it's the second argument of [String.prototype.replace](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace#%E6%8C%87%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0)
 
 options:
 ```js
@@ -91,16 +90,16 @@ options:
 }
 ```
 
-before css:
+before:
 ```css
 div { background: url("/static/module-1/header.png") }
 ```
 
-after css:
+after:
 ```css
 div { background: url("/static/module-2/header.png") }
 ```
 
-#### LISENCE
+## LISENCE
 
 MIT
