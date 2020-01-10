@@ -1,18 +1,28 @@
-var postcss = require('postcss');
+var postcss = require('postcss')
 
-module.exports = postcss.plugin('postcss-path-replace', (options) => {
+var pathReplacePlugin = postcss.plugin('postcss-path-replace', pathReplaceProcess)
+
+module.exports = pathReplacePlugin
+
+/**
+ * plugin process handler.
+ * @param {object} options 
+ */
+function pathReplaceProcess(options) {
   var publicPath = options.publicPath || ''
   var matched = options.matched
   var mode = options.mode || 'replace'
   var exec = options.exec
-  
+
+  // want a regexp to replace all.
   if (typeof matched === 'string') {
-    matched = new RegExp(matched, 'g')
+    var escapeMatched = escapeRegExp(matched)
+    matched = new RegExp(escapeMatched, 'g')
   }
-  return root => {
-    root.walkDecls(decl => {
+  return function (root) {
+    root.walkDecls(function (decl) {
       if (/url\(['"]?.*?['"]?\)/.test(decl.value)) {
-        decl.value = decl.value.replace(matched, function () {
+        decl.value = decl.value.replace(matched, function() {
           var args = [].slice.call(arguments)
           if (exec && typeof exec === 'function') {
             return exec.apply(null, args)
@@ -24,8 +34,18 @@ module.exports = postcss.plugin('postcss-path-replace', (options) => {
           if (mode === 'append') {
             return publicPath + args[0]
           }
+
+          return publicPath
         })
       }
     })
   }
-})
+}
+
+/**
+ * escape special char, like '.', '/'
+ * @param {string} str 
+ */
+function escapeRegExp(str) {
+  return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
+}

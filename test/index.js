@@ -59,7 +59,31 @@ it("The matched path is a RegExp", () => {
   )
 })
 
-it("Use comtom execute function", () => {
+it("Unknown mode", () => {
+  return run(
+    'div { background: url("/static/img/header.png") }',
+    'div { background: url("http://static.example.com/img/header.png") }',
+    {
+      publicPath: 'http://static.example.com',
+      mode: 'replacexx',
+      matched: '/static'
+    }
+  )
+})
+
+it("No resource link", () => {
+  return run(
+    'div { background: #FFF }',
+    'div { background: #FFF }',
+    {
+      publicPath: 'http://static.example.com',
+      mode: 'replace',
+      matched: '/static'
+    }
+  )
+})
+
+it("Use custom execute function", () => {
   return run(
     'div { background: url("/static/module-1/header.png") }',
     'div { background: url("/static/module-2/header.png") }',
@@ -69,6 +93,19 @@ it("Use comtom execute function", () => {
         const moduleIndex = value.split('-')[1]
         return value.split('-')[0] + '-' + (Number(moduleIndex) + 1)
       }
+    }
+  )
+})
+
+// fix: #1
+it("Regexp escape", () => {
+  return run(
+    'div { background: url("base64:image/png;/9tT9//oTd9/f3/wK8v7+DH/") }',
+    'div { background: url("base64:image/png;/9tT9//oTd9/f3/wK8v7+DH/") }',
+    {
+      publicPath: "../",
+      matched: "../../",
+      mode: "replace"
     }
   )
 })
